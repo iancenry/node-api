@@ -26,7 +26,7 @@ const handler = (req, res) => {
 
   const chosen = allRoutes[key] || allRoutes.default;
 
-  return chosen(req, res);
+  return Promise.resolve(chosen(req, res)).catch(handleError(res));
 };
 
 function handleError(res) {

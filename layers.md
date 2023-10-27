@@ -1,5 +1,6 @@
 N-Layers
 
+- database - a file which stores all app data
 - src- all source code
 
   - entities - object mappings
