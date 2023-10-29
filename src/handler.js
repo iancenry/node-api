@@ -1,12 +1,11 @@
 import { parse } from 'node:url';
 import { DEFAULT_HEADER } from './util/util.js';
+import { routes } from './routes/heroRoute.js';
+
+const heroRoutes = routes({ heroService: {} });
 
 const allRoutes = {
-  '/heroes:get': (req, res) => {
-    res.write('GET');
-    res.end();
-  },
-
+  ...heroRoutes,
   // 404 routes
   default: (req, res) => {
     res.writeHead(404, DEFAULT_HEADER);
@@ -16,7 +15,7 @@ const allRoutes = {
 };
 
 // processing to send to the server
-const handler = (req, res) => {
+const handler = async (req, res) => {
   const { url, method } = req;
 
   // get pathname only; ignore query params in the url
@@ -26,18 +25,23 @@ const handler = (req, res) => {
 
   const chosen = allRoutes[key] || allRoutes.default;
 
-  return Promise.resolve(chosen(req, res)).catch(handleError(res));
+  try {
+    await chosen(req, res);
+  } catch (error) {
+    handlerError(res)(error);
+  }
 };
 
-function handleError(res) {
+function handlerError(res) {
   return (error) => {
-    console.log('Something bad has happened', error.stack);
+    // console.error('Something bad has happened** \n', error.stack);
     res.writeHead(500, DEFAULT_HEADER);
     res.write(
       JSON.stringify({
-        error: 'internet server error',
+        error: 'internet server error!!',
       })
     );
+
     return res.end();
   };
 }
