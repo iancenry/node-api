@@ -3,9 +3,9 @@ N-Layers
 - database - a file which stores all app data
 - src- all source code
 
-  - entities - object mappings
+  - entities - object/data mappings
   - factories - instance generators
-  - repositories - data access
+  - repositories - data access and write
   - routes - endpoint mappings
   - services - communication between the routes and repositories layer (business logic)
   - util - shared code
