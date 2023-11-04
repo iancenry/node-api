@@ -4,8 +4,13 @@ import { DEFAULT_HEADER } from '../util/util.js';
 
 const routes = ({ heroService }) => ({
   '/heroes:get': async (req, res) => {
-    res.write('GET');
-    res.end();
+    const heroes = await heroService.find();
+    res.write(
+      JSON.stringify({
+        results: heroes,
+      })
+    );
+    return res.end();
   },
   '/heroes:post': async (req, res) => {
     // get item once the request sends some data
@@ -13,7 +18,7 @@ const routes = ({ heroService }) => ({
     const item = JSON.parse(data);
     const hero = new Hero(item);
 
-    const id = hero.id;
+    const id = await heroService.create(hero);
     res.writeHead(201, DEFAULT_HEADER);
     res.write(
       JSON.stringify({
