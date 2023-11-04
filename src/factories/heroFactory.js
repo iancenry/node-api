@@ -1,5 +1,5 @@
 import HeroRepository from '../repositories/heroRespository.js';
-import HeroService from '../repositories/heroService.js';
+import HeroService from '../services/heroService.js';
 
 const generateInstance = ({ filePath }) => {
   // hero gets all db connections
