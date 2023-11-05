@@ -1,5 +1,6 @@
 # Pure Node Web API
 
+- A heroes api made with pure node, without frameworks or external libraries.
 - Using the N-layers architecture - goal is to create project using folders representing layers with different responsibilites: Data access, Business logic, App infrastructure code(route, controllers, endpoints etc)
 - Testing without frameworks.
 
