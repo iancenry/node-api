@@ -19,3 +19,5 @@ describe('example test suite', () => {
     "test": "node --test --watch"
   },
 ```
+
+# Quick Setup
