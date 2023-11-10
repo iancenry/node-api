@@ -21,3 +21,5 @@ describe('example test suite', () => {
 ```
 
 # Quick Setup
+
+- Not complete - rewatch + add checklist
